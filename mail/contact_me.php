@@ -9,6 +9,19 @@ if(empty($_POST['name'])  		||
 	echo "¡No se han proporcionado argumentos!";
 	return false;
    }
+
+if(isset($_POST['g-recaptcha-response'])){
+ 	if(!verify($_POST['g-recaptcha-response'])) {
+		echo "La comprobación NoCAPTCHA es incorrecta";
+		return false;
+ 	}
+} else {	
+	echo "¡No se han proporcionado captcha!";
+	return false;
+}
+
+	echo "¡No se han proporcionado captcha!";
+	return false;
 	
 $name = $_POST['name'];
 $email_address = $_POST['email'];
@@ -22,5 +35,24 @@ $email_body = "Has recibido un nuevo mensaje de tu formulario de contacto de la 
 $headers = "From: noreply@residenciamoncloa.com\n"; // This is the email address the generated message will be from. We recommend using something like noreply@yourdomain.com.
 $headers .= "Reply-To: $email_address";	
 mail($to,$email_subject,$email_body,$headers);
-return true;			
+return true;	
+
+
+
+function verify($response) {
+	$ip = $_SERVER['REMOTE_ADDR']; //server Ip
+	$key="6LeMlAkTAAAAAMWa7WWMcyjHhow7JkP6yCppLyWG"; // Secret key
+
+	//Build up the url
+	$url = 'https://www.google.com/recaptcha/api/siteverify';
+	$full_url = $url.'?secret='.$key.'&response='.$response.'&remoteip='.$ip;
+
+	//Get the response back decode the json
+	$data = json_decode(file_get_contents($full_url));
+	//Return true or false, based on users input
+	if(isset($data->success) && $data->success == true) {
+		return True;
+	}
+	return False;
+}		
 ?>

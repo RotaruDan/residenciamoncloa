@@ -9,12 +9,18 @@ $(function() {
             // Prevent spam click and default submit behaviour
             $("#btnSubmit").attr("disabled", true);
             event.preventDefault();
-            
+
             // get values from FORM
             var name = $("input#name").val();
             var email = $("input#email").val();
             var phone = $("input#phone").val();
             var message = $("textarea#message").val();
+            var googleResponse = $('#g-recaptcha-response').val();
+            if (!googleResponse) {
+                $('<p class="captcha-msg help-block text-danger">Por favor activa el captcha.</p>').insertAfter(".g-recaptcha");
+                // <p style="color:red !important" class="error-captcha"><span class="glyphicon glyphicon-remove " ></span> </p>
+                return false;
+            }
             var firstName = name; // For Success/Failure Message
             // Check for white space in name for Success/Fail message
             if (firstName.indexOf(' ') >= 0) {
@@ -27,7 +33,8 @@ $(function() {
                     name: name,
                     phone: phone,
                     email: email,
-                    message: message
+                    message: message,
+                    "g-recaptcha-response": googleResponse
                 },
                 cache: false,
                 success: function() {
@@ -43,6 +50,8 @@ $(function() {
 
                     //clear all fields
                     $('#contactForm').trigger("reset");
+                    grecaptcha.reset();
+                    $( ".captcha-msg" ).remove();
                 },
                 error: function() {
                     // Fail message
@@ -53,6 +62,8 @@ $(function() {
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
+                    grecaptcha.reset();
+                    $( ".captcha-msg" ).remove();
                 },
             })
         },
