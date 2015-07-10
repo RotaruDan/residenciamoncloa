@@ -68,10 +68,7 @@
 <!-- it works the same with all jquery version from 1.x to 2.x -->
 <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 <script src="https://www.google.com/recaptcha/api.js"></script>
-<!-- use jssor.slider.mini.js (40KB) instead for release -->
-<!-- jssor.slider.mini.js = (jssor.js + jssor.slider.js) -->
-<script type="text/javascript" src="js/jssor.js"></script>
-<script type="text/javascript" src="js/jssor.slider.js"></script>
+<script type="text/javascript" src="js/jssor.slider.mini.js"></script>
 <script>
     jQuery(document).ready(function ($) {
         //Reference http://www.jssor.com/development/slider-with-slideshow-jquery.html
@@ -393,10 +390,10 @@
                 $Class: $JssorSlideshowRunner$,                 //[Required] Class to create instance of slideshow
                 $Transitions: _SlideshowTransitions,            //[Required] An array of slideshow transitions to play slideshow
                 $TransitionsOrder: 1,                           //[Optional] The way to choose transition to play slide, 1 Sequence, 0 Random
-                $ShowLink: true                                    //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
+                $ShowLink: true                                 //[Optional] Whether to bring slide link on top of the slider when slideshow is running, default value is false
             },
-            $BulletNavigatorOptions: {                                //[Optional] Options to specify and enable navigator or not
-                $Class: $JssorBulletNavigator$,                       //[Required] Class to create navigator instance
+            $BulletNavigatorOptions: {                          //[Optional] Options to specify and enable navigator or not
+                $Class: $JssorBulletNavigator$,                 //[Required] Class to create navigator instance
                 $ChanceToShow: 2,                               //[Required] 0 Never, 1 Mouse Over, 2 Always
                 $AutoCenter: 1,                                 //[Optional] Auto center navigator in parent container, 0 None, 1 Horizontal, 2 Vertical, 3 Both, default value is 0
                 $Steps: 1,                                      //[Optional] Steps to go for each navigation request, default value is 1
@@ -667,11 +664,11 @@
         </div>
         <div class="row">
             <div class="col-lg-4 col-lg-offset-2">
-                <p> Estamos situados junto a la universidad complutense de Madrid, Zona de Moncloa. Muchas gracias por
+                <p> Estamos situados junto a la Universidad Ccomplutense de Madrid, Zona de Moncloa. Muchas gracias por
                     tu interés en nuestra residencia. Esperamos que sea de tu agrado.
                 </p>
 
-                <p> Estamos en Moncloa un lugar céntrico; el barrio en el que quieren vivir todos los estudiantes, por
+                <p> Estamos en Moncloa, un lugar céntrico. El barrio en el que quieren vivir todos los estudiantes, por
                     su proximidad a la ciudad universitaria y porque la zona está transitada por estudiantes mayormente,
                     hay bares discotecas y una gran zona de tiendas.
                 </p>
@@ -776,7 +773,7 @@
                     </div>
                     <br>
                     <div class="row control-group">
-                        <div class="g-recaptcha" data-sitekey="6LeMlAkTAAAAABZkAoZYI_ji4GvjwsFND2zKGxle" ></div>
+                        <div class="g-recaptcha" data-sitekey="6LeMlAkTAAAAABZkAoZYI_ji4GvjwsFND2zKGxle"></div>
                         <p class="help-block text-danger"></p>
                     </div>
                     <div id="success"></div>
@@ -847,17 +844,17 @@
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2">
                     <div class="modal-body">
-                        <h2>Alimentación</h2>
+                        <h2>Comida</h2>
                         <hr class="star-primary">
                         <img src="img/portfolio/food.jpg" class="img-responsive img-centered" alt="">
 
                         <p>Alimentación basada en comidas caseras variadas con productos de primera calidad.</p>
 
                         <p class="text-info">
-                            Nutrition based on assorted homemade meals with products of firts quality.</p>
+                            Nutrition based on assorted homemade meals with products of first quality.</p>
 
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
-                            Close
+                            Cerrar
                         </button>
                     </div>
                 </div>
@@ -895,7 +892,7 @@
                         </p>
 
                         <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i>
-                            Close
+                            Cerrar
                         </button>
                     </div>
                 </div>
@@ -1030,8 +1027,16 @@
     </div>
 </div>
 
-<!-- jQuery -->
-<script src="js/jquery.js"></script>
+<!-- jQuery
+
+Up in this file the following script is included
+    <script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+
+so there is no need to include  the full version:
+
+    <script src="js/jquery.js"></script>
+-->
+
 
 <!-- Bootstrap Core JavaScript -->
 <script src="js/bootstrap.min.js"></script>
