@@ -1,0 +1,12 @@
+{
+  "name": "residenciamoncloa",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {},
+  "dependencies": {},
+  "devDependencies": {
+    "grunt": "*",
+    "grunt-contrib-cssmin": "*",
+    "grunt-contrib-less": "*"
+  }
+}
