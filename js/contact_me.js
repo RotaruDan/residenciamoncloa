@@ -1,11 +1,11 @@
-$(function() {
+$(function () {
 
     $("input,textarea").jqBootstrapValidation({
         preventSubmit: true,
-        submitError: function($form, event, errors) {
+        submitError: function ($form, event, errors) {
             // additional error messages or events
         },
-        submitSuccess: function($form, event) {
+        submitSuccess: function ($form, event) {
             // Prevent spam click and default submit behaviour
             $("#btnSubmit").attr("disabled", true);
             event.preventDefault();
@@ -37,7 +37,10 @@ $(function() {
                     "g-recaptcha-response": googleResponse
                 },
                 cache: false,
-                success: function() {
+                success: function (returneddata, status) {
+                    console.log('returned data: ' + returneddata);
+                    console.log('returned status: ' + status);
+
                     // Enable button & show success message
                     $("#btnSubmit").attr("disabled", false);
                     $('#success').html("<div class='alert alert-success'>");
@@ -51,34 +54,36 @@ $(function() {
                     //clear all fields
                     $('#contactForm').trigger("reset");
                     grecaptcha.reset();
-                    $( ".captcha-msg" ).remove();
+                    $(".captcha-msg").remove();
                 },
-                error: function() {
+                error: function () {
                     // Fail message
                     $('#success').html("<div class='alert alert-danger'>");
                     $('#success > .alert-danger').html("<button type='button' class='close' data-dismiss='alert' aria-hidden='true'>&times;")
                         .append("</button>");
-                    $('#success > .alert-danger').append("<strong>Lo sentimos " + firstName + ", parece que el servidor de email no está respondiendo. ¡Por vafor, vuelve a intentarlo más tarde!");
+                    $('#success > .alert-danger').append("<strong>Lo sentimos " + firstName + ", " +
+                        "parece que el servidor de email no está respondiendo. " +
+                        + " ¡Por vafor, contacta con info@residenciamoncloa.com! ");
                     $('#success > .alert-danger').append('</div>');
                     //clear all fields
                     $('#contactForm').trigger("reset");
                     grecaptcha.reset();
-                    $( ".captcha-msg" ).remove();
+                    $(".captcha-msg").remove();
                 },
             })
         },
-        filter: function() {
+        filter: function () {
             return $(this).is(":visible");
         },
     });
 
-    $("a[data-toggle=\"tab\"]").click(function(e) {
+    $("a[data-toggle=\"tab\"]").click(function (e) {
         e.preventDefault();
         $(this).tab("show");
     });
 });
 
 // When clicking on Full hide fail/success boxes
-$('#name').focus(function() {
+$('#name').focus(function () {
     $('#success').html('');
 });
